@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main>
-      <header>
-        <h1>🔍 SEO Analyzer</h1>
-        <p class="subtitle">Wpisz adres strony i sprawdź jej SEO. Narzędzie dla QA.</p>
-      </header>
+    <header>
+      <h1>🔍 SEO Analyzer</h1>
+      <p class="subtitle">Wpisz adres strony i sprawdź jej SEO. Narzędzie dla QA.</p>
+    </header>
 
+    <div class="layout">
+      <main>
       <form id="analyze-form">
         <input
           id="url-input"
@@ -43,12 +44,13 @@
 
         <ul id="checks-list" class="checks"></ul>
       </section>
+      </main>
 
-      <section id="history" hidden>
+      <aside id="history" class="sidebar" hidden>
         <h2 class="history-heading">Historia audytów</h2>
         <ul id="history-list" class="history"></ul>
-      </section>
-    </main>
+      </aside>
+    </div>
 
     <script src="app.js"></script>
   </body>

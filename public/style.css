@@ -23,15 +23,34 @@ body {
   line-height: 1.5;
 }
 
-main {
-  max-width: 760px;
+/* Układ dwukolumnowy: główna treść + panel boczny z historią. */
+.layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  max-width: 1140px;
   margin: 0 auto;
-  padding: 2rem 1.25rem 4rem;
+  padding: 0 1.25rem 4rem;
+}
+
+main {
+  flex: 1 1 auto;
+  min-width: 0; /* pozwala treści się kurczyć zamiast rozpychać layout */
+}
+
+/* Panel boczny (historia) po prawej, „przyklejony" przy przewijaniu. */
+.sidebar {
+  flex: 0 0 320px;
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.1rem 1.25rem;
+  position: sticky;
+  top: 1rem;
 }
 
 header {
   text-align: center;
-  margin-bottom: 2rem;
+  padding: 2rem 1.25rem 1.5rem;
 }
 
 h1 {
@@ -298,13 +317,9 @@ form {
   font-size: 0.9rem;
 }
 
-/* ── Historia audytów ─────────────────────────────────── */
-#history {
-  margin-top: 2rem;
-}
-
+/* ── Historia audytów (panel boczny) ──────────────────── */
 .history-heading {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin: 0 0 0.75rem;
 }
 
@@ -322,9 +337,9 @@ form {
   display: flex;
   align-items: center;
   gap: 0.9rem;
-  padding: 0.75rem 1rem;
-  background: var(--card);
-  border: 1px solid var(--card-2);
+  padding: 0.75rem 0.85rem;
+  background: var(--card-2);
+  border: 1px solid transparent;
   border-radius: var(--radius);
   color: var(--text);
   cursor: pointer;
@@ -376,6 +391,18 @@ form {
 .history-date {
   color: var(--muted);
   font-size: 0.85rem;
+}
+
+/* Na węższych ekranach panel historii schodzi pod główną treść. */
+@media (max-width: 860px) {
+  .layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    flex-basis: auto;
+    width: 100%;
+    position: static;
+  }
 }
 
 @media (max-width: 520px) {
