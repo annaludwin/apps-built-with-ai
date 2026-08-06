@@ -1,0 +1,24 @@
+{
+  "name": "seo-analyzer",
+  "version": "1.0.0",
+  "description": "Narzędzie web do analizy SEO dla QA — wpisz URL, dostań raport.",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.ts",
+    "dev": "node --watch src/server.ts",
+    "test": "node --test \"tests/**/*.test.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": ["seo", "qa", "testing", "analyzer"],
+  "author": "Anna Ludwin",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0"
+  }
+}

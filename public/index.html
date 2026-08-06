@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SEO Analyzer — narzędzie QA</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>🔍 SEO Analyzer</h1>
+        <p class="subtitle">Wpisz adres strony i sprawdź jej SEO. Narzędzie dla QA.</p>
+      </header>
+
+      <form id="analyze-form">
+        <input
+          id="url-input"
+          type="text"
+          placeholder="np. example.com (https:// nieobowiązkowe)"
+          autocomplete="off"
+          required
+        />
+        <button type="submit" id="submit-btn">Analizuj</button>
+      </form>
+
+      <p id="status" class="status" hidden></p>
+
+      <section id="report" hidden>
+        <div class="report-header">
+          <div class="score-circle" id="score-circle">
+            <span id="score-value">0</span><small>/100</small>
+          </div>
+          <div class="report-meta">
+            <p><strong>Adres:</strong> <a id="report-url" href="#" target="_blank" rel="noopener"></a></p>
+            <p>
+              <strong>Kod HTTP:</strong> <span id="report-status"></span>
+              &nbsp;•&nbsp;
+              <strong>Czas:</strong> <span id="report-time"></span> ms
+            </p>
+          </div>
+        </div>
+
+        <ul id="checks-list" class="checks"></ul>
+      </section>
+
+      <section id="history" hidden>
+        <h2 class="history-heading">Historia audytów</h2>
+        <ul id="history-list" class="history"></ul>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

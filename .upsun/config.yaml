@@ -1,0 +1,43 @@
+# Konfiguracja wdrożenia na Upsun.
+# Opisuje: jaką aplikację uruchomić, jak ją zbudować i gdzie kierować ruch.
+
+applications:
+  seo:
+    # Node 24 uruchamia pliki .ts bez kompilacji (type stripping domyślnie).
+    # Gdyby nodejs:24 nie było dostępne, użyj "nodejs:22" i zmień start na:
+    #   "node --experimental-strip-types src/server.ts"
+    type: "nodejs:24"
+
+    # Katalog aplikacji względem repozytorium ("/" = główny katalog).
+    source:
+      root: "/"
+
+    # Krok budowania — instalacja zależności przy wdrożeniu.
+    hooks:
+      build: |
+        npm install
+
+    web:
+      commands:
+        # Nasz serwer Express. Słucha na porcie z process.env.PORT,
+        # który Upsun podaje aplikacji automatycznie.
+        start: "npm start"
+      upstream:
+        # Aplikacja słucha na porcie TCP (a nie na gnieździe uniksowym).
+        socket_family: tcp
+
+    # Zapisywalny katalog na historię audytów (reszta systemu plików na
+    # Upsun jest tylko do odczytu). Tu trafia data/history.json.
+    mounts:
+      "data":
+        source: "storage"
+        source_path: "data"
+
+# Kierowanie ruchu z publicznego adresu do naszej aplikacji "seo".
+routes:
+  "https://{default}/":
+    type: upstream
+    upstream: "seo:http"
+  "https://www.{default}/":
+    type: redirect
+    to: "https://{default}/"
