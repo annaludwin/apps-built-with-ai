@@ -1,5 +1,6 @@
 # Konfiguracja wdrożenia na Upsun.
 # Opisuje: jaką aplikację uruchomić, jak ją zbudować i gdzie kierować ruch.
+# (Ponowny commit 2026-08-06 — wymuszenie świeżego fetchu/builda po zmianie nazwy projektu.)
 
 applications:
   seo:
